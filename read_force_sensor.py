@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 
-# Based on code written by Limor "Ladyada" Fried for Adafruit Industries, (c) 2015
-# modified by LS for yurt_report project
+# Written by Limor "Ladyada" Fried for Adafruit Industries, (c) 2015
+# modified 2017 by LS for yurt_report project
+
 
 import time
 import os
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
-DEBUG = 1
+DEBUG = 0
 
 # read SPI data from MCP3008 chip, 8 possible adc's (0 thru 7)
-def get_force_signal(adcnum, clockpin, mosipin, misopin, cspin):
+def readadc(adcnum, clockpin, mosipin, misopin, cspin):
         if ((adcnum > 7) or (adcnum < 0)):
                 return -1
         GPIO.output(cspin, True)
@@ -43,7 +44,5 @@ def get_force_signal(adcnum, clockpin, mosipin, misopin, cspin):
         GPIO.output(cspin, True)
         
         adcout >>= 1       # first bit is 'null' so drop it
-		#rename to be more clear
-		force_signal=adcout
-        return force_signal
+        return adcout
 
