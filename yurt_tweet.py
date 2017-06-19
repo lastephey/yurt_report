@@ -1,9 +1,16 @@
 #! python
 
+# yurt_report project, written 2017 by LS
+# parts based heavily on code provided by adafruit, written by limor fried
+# master program which calls read_force_sensor.py, which reads the value and reports back
+# then, based on a threshold, decides whether a cat is present or not
+# performs this check every 5 mins, updates twitter account @yurt_report
+
 from twython import Twython
 import time
 import os
 import RPi.GPIO as GPIO
+import datetime
 
 
 from auth import (
@@ -14,7 +21,7 @@ from auth import (
 )
 
 import read_force_sensor
-#import test_force
+
 
 twitter = Twython(
         consumer_key,
@@ -41,11 +48,7 @@ GPIO.setup(SPICS, GPIO.OUT)
 # 10k trim pot connected to adc #0
 potentiometer_adc = 0;
 
-#just do this continuously
-counter=0
-
 while True:
-        counter=counter+1
 
         # read the analog pin
         trim_pot = read_force_sensor.readadc(potentiometer_adc, SPICLK, SPIMOSI, SPIMISO, SPICS)
@@ -55,25 +58,25 @@ while True:
         set_volume = int(set_volume)            # cast volume as integer
 
         # change variable names
-        force_signal=set_volume
-
-        # print('Force=%s' %force_signal)
- 
+        force_signal=set_volume 
 
         #let's set a threshold value for the force sensor
-        force_threshold=50
+        force_threshold=5
+
+        # get system time for timestamp on tweet to avoid duplicates
+        now=datetime.datetime.now()
 	
         if force_signal > force_threshold:
                 cat_status=1
-                message="force sensor above threshold (test %s)" %counter
+                message="There is a cat in the yurt :) %s" %now 
            
         elif force_signal <= force_threshold:
                 cat_status=0
-                message="force sensor below threshold (test %s)" % counter
+                message="Sorry, no cats :( %s" %now 
                
 
         twitter.update_status(status=message)
         print("Tweeted: %s" % message)
 
-	# check every 60 s
-        time.sleep(60)
+	# check every 300 s
+        time.sleep(300)
