@@ -68,11 +68,11 @@ while True:
 	
         if force_signal > force_threshold:
                 cat_status=1
-                message="There is a cat :) %s Force sensor at %s percent" %now,force_signal 
+                message="There is a cat :) %s Force sensor at %s percent" %(now,force_signal) 
            
         elif force_signal <= force_threshold:
                 cat_status=0
-                message="Sorry, no cats :( %s Force sensor at %s percent" %now,force_signal 
+                message="Sorry, no cats :( %s Force sensor at %s percent" %(now,force_signal) 
                
 
         twitter.update_status(status=message)
