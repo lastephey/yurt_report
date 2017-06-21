@@ -61,7 +61,7 @@ while True:
         force_signal=set_volume 
 
         #let's set a threshold value for the force sensor
-        force_threshold=5
+        force_threshold=10
 
         # get system time for timestamp on tweet to avoid duplicates
         now=datetime.datetime.now()
