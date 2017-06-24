@@ -61,7 +61,9 @@ while True:
         force_signal=set_volume 
 
         #let's set a threshold value for the force sensor
-        force_threshold=15
+		#with basket, now reads about 35 percent empty
+		#should read over 40 percent with cat
+        force_threshold=40
 
         # get system time for timestamp on tweet to avoid duplicates
         now=datetime.datetime.now()
