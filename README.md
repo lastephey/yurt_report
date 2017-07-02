@@ -4,6 +4,12 @@ project for fun to send a tweet when one of my cats goes in their yurt
 
 using a raspberry pi and a force sensor to decide when a cat goes inside
 
+next step: download, analyze, plot, and predict(?) future cat behavior, stay tuned!
+
 project based on https://acaird.github.io/computers/2015/01/07/raspberry-pi-fsr
 
-note that when running on raspberry pi 3, have to specify python 3 when executing
+using tweepy and Twython libraries which aren't copied here, but you can find them at:
+
+https://github.com/tweepy/tweepy
+
+https://github.com/ryanmcgrath/twython
