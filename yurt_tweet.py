@@ -79,8 +79,8 @@ while True:
         #have encountered errors several times now (the 503 error), need to make yurt_report robust to these		
         try:
              twitter.update_status(status=message)
-			 print("Tweeted: %s" % message)
-		except TwythonError as e:
+             print("Tweeted: %s" % message)
+        except TwythonError as e:
              print ("We encountered an error: %s" % e)	 
 		
 
