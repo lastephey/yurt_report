@@ -75,10 +75,15 @@ while True:
         elif force_signal <= force_threshold:
                 cat_status=0
                 message="Sorry, no cats :( %s Force sensor at %s percent" %(now,force_signal) 
-               
+        
+        #have encountered errors several times now (the 503 error), need to make yurt_report robust to these		
+        try:
+             twitter.update_status(status=message)
+			 print("Tweeted: %s" % message)
+		except TwythonError as e:
+             print ("We encountered an error: %s" % e)	 
+		
 
-        twitter.update_status(status=message)
-        print("Tweeted: %s" % message)
 
 	# check every 300 s
         time.sleep(300)
