@@ -36,7 +36,6 @@ def download_yurt_tweets():
     oldest = alltweets[-1].id - 1
 	
     #then check for older tweets, keep going until none are left (or we hit our limit)
-
     while len(new_tweets) > 0:
         
         #all subsiquent requests use the max_id param to prevent duplicates
@@ -48,13 +47,13 @@ def download_yurt_tweets():
         #update the id of the oldest tweet less one
         oldest = alltweets[-1].id - 1
 		
-    counter=0	
+	
     alltweets_json=[]
     for i in range(0,len(alltweets)):	
-        status=alltweets[counter]	 		
+        status=alltweets[i]	 		
         #append in json format		
         alltweets_json.append(json.dumps(status._json))
-        counter += 1	
+       	
 		
     #print how many tweets we got
     print("Downloading %s tweets" % len(alltweets_json))	
