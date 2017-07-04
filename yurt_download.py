@@ -23,23 +23,19 @@ def download_yurt_tweets():
  
     api = tweepy.API(auth)
 	
-	#initialize a list to hold all the tweepy Tweets
+    #initialize a list to hold all the tweepy Tweets
     alltweets = []    
     
     #make initial request for most recent tweets (200 is the maximum allowed count)
     new_tweets = api.user_timeline(count=200)
     
-    #save most recent tweets
+    #first save most recent tweets
     alltweets.extend(new_tweets)
     
     #save the id of the oldest tweet less one
     oldest = alltweets[-1].id - 1
 	
-    #print alltweets here
-    #print(alltweets)
-    
-    #keep grabbing tweets until there are no tweets left to grab
-
+    #then check for older tweets, keep going until none are left (or we hit our limit)
 
     while len(new_tweets) > 0:
         
@@ -63,8 +59,6 @@ def download_yurt_tweets():
     #print how many tweets we got
     print("Downloading %s tweets" % len(alltweets_json))	
 	
-    #print raw alltweets list
-    #print(alltweets_json)
   	
     #write tweet objects to file
     with open('saved_yurt_tweets.json', 'w') as outfile:
