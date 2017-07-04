@@ -1,7 +1,7 @@
 #! python
 
 # yurt_report project, written 2017 by LS
-# large pieces of this function were taken from https://nocodewebscraping.com/twitter-json-examples/
+# pieces of this function were taken from https://nocodewebscraping.com/twitter-json-examples/
 # this function designed to pull the tweets made by @yurt_report and save them in json format for further processing
 
 def download_yurt_tweets():
