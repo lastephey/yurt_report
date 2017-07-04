@@ -34,10 +34,13 @@ def download_yurt_tweets():
     
     #save the id of the oldest tweet less one
     oldest = alltweets[-1].id - 1
+	
+    #print alltweets here
+    #print(alltweets)
     
     #keep grabbing tweets until there are no tweets left to grab
-    counter=0
-    alltweets_json=[]
+
+
     while len(new_tweets) > 0:
         
         #all subsiquent requests use the max_id param to prevent duplicates
@@ -49,16 +52,24 @@ def download_yurt_tweets():
         #update the id of the oldest tweet less one
         oldest = alltweets[-1].id - 1
 		
-        status=alltweets[counter]	
-        		
+    counter=0	
+    alltweets_json=[]
+    for i in range(0,len(alltweets)):	
+        status=alltweets[counter]	 		
         #append in json format		
         alltweets_json.append(json.dumps(status._json))
         counter += 1	
+		
+    #print how many tweets we got
+    print("Downloading %s tweets" % len(alltweets_json))	
+	
+    #print raw alltweets list
+    #print(alltweets_json)
   	
     #write tweet objects to file
     with open('saved_yurt_tweets.json', 'w') as outfile:
-        for item in alltweets_json:
-            outfile.write("%s\n" % item)
+        for line in alltweets_json:
+            outfile.write("%s\n" % line)
     
     #close the file
     print("Done")
