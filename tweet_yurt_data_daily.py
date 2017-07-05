@@ -16,9 +16,6 @@ from yurt_download import download_yurt_tweets
 from twython import Twython
 import os
 
-#try switching matplotlib backends?
-matplotlib.rcParams['backend'] = 'TkAgg'
-
 #load twitter data
 from auth import (
         consumer_key,
