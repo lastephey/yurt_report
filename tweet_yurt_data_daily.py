@@ -2,8 +2,7 @@
 
 # yurt_report project, written 2017 by LS
 # script to download the past day's tweets, analyze them, plot them, and automatically post the plot to twitter!
-# currently runs on my laptop, needs to be ported to the rasperry pi
-# several python libraries will need to be installed there, don't forget!
+
 
 import json
 import matplotlib.pyplot as plt
@@ -115,7 +114,7 @@ while True:
 
         #and upload
         message=("Here is today's Yurt Report! %s" % now)
-        tweetpic = open("C:/Yurt_report/popular_yurt_times_daily.png","rb")
+        tweetpic = open("/home/pi/Documents/yurt_report/popular_yurt_times_daily.png","rb")
         # Update status with our new image and status
         twitter.update_status_with_media(status=message, media=tweetpic)
         print("Tweeted: %s" % message)
