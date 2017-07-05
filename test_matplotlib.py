@@ -1,7 +1,9 @@
 #! python
 
-import matplotlib
+import matplotlib as mpl
 
-test=matplotlib.get_backend()
+print(config directory)
+print(mpl.get_configdir())
 
-print(test)
+print(install directory)
+print(mpl.__file__)
