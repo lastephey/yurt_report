@@ -17,7 +17,7 @@ from twython import Twython
 import os
 
 #try switching matplotlib backends?
-plt.switch_backend('newbackend') 
+matplotlib.rcParams['backend'] = 'TkAgg'
 
 #load twitter data
 from auth import (
