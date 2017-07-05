@@ -2,6 +2,8 @@
 
 # yurt_report project, written 2017 by LS
 # script to download the past day's tweets, analyze them, plot them, and automatically post the plot to twitter!
+# currently runs on my laptop, needs to be ported to the rasperry pi
+# several python libraries will need to be installed there, don't forget!
 
 import json
 import matplotlib.pyplot as plt
@@ -24,7 +26,7 @@ from auth import (
 )
 
 #keep checking to see what time it is every 60 s
-#at 4PM every day, generate the last 24 hour report
+#at 7:15PM every day, generate the last 24 hour report
 report_time='19:15:00';
 FMT='%H:%M:%S'
 print(flush=True)
@@ -38,7 +40,7 @@ while True:
     deltat_ms=divmod(deltat.days * 86400 + deltat.seconds, 60)
     deltat_min=deltat_ms[0]
     time.sleep(50)
-    if -1 <= deltat_min <= 0: #which should happen around 4PM
+    if -1 <= deltat_min <= 0: #which should happen around the report time (hopefully)
         print("It's report time! Here we go...")
         #then start the downloading, analyzing, and plotting process
         #download the most recent data
@@ -78,7 +80,6 @@ while True:
             else:
                 continue
                 
-            
         #get timestamps when cat is present
         cat_present_dt=[]	
         cat_present_list=[]
@@ -93,10 +94,8 @@ while True:
             #also keep track of which hours cats are present, this is equally ugly
             cat_present_hour.append(int(text_temp[29:31]))
            
-
-
         #now plot histogram of which times are most popular
-        c=plt.figure(3)
+        c=plt.figure(1)
         plt.hist(cat_present_hour,bins=24)
         plt.xlabel("Time (hour)")
         plt.ylabel("Number of cat present tweets")
