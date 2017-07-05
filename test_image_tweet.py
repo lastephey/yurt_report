@@ -28,7 +28,7 @@ now=datetime.datetime.now()
 
 #and upload
 message=("Here is today's Yurt Report! %s" % now)
-tweetpic = open("C:/Yurt_report/popular_yurt_times_daily.png","rb")
+tweetpic = open("popular_yurt_times_daily.png","rb")
 # Update status with our new image and status
 twitter.update_status_with_media(status=message, media=tweetpic)
 print("Tweeted: %s" % message)
