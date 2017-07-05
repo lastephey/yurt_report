@@ -1,4 +1,4 @@
-python3
+#! python
 
 import matplotlib
 matplotlib.__version__
