@@ -1,6 +1,7 @@
 #! python
 
 import matplotlib
-matplotlib.__version__
 
-print(matplotlib.__version__)
+test=matplotlib.get_backend()
+
+print(test)
