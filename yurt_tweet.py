@@ -6,29 +6,29 @@
 # then, based on a threshold, decides whether a cat is present or not
 # performs this check every 5 mins, updates twitter account @yurt_report
 
-from twython import Twython
+
 import time
 import os
 import RPi.GPIO as GPIO
 import datetime
+import tweepy
+from tweepy import OAuthHandler
 
 
+# load authentication key info
 from auth import (
-        consumer_key,
-        consumer_secret,
-        access_token,
-        access_token_secret
+         consumer_key,
+         consumer_secret,
+         access_token,
+         access_token_secret
 )
+
+auth = OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+
+api = tweepy.API(auth)
 
 import read_force_sensor
-
-
-twitter = Twython(
-        consumer_key,
-        consumer_secret,
-        access_token,
-        access_token_secret
-)
 
 # change these as desired - they're the pins connected from the
 # SPI port on the ADC to the Cobbler
@@ -78,9 +78,9 @@ while True:
         
         #have encountered errors several times now (the 503 error), need to make yurt_report robust to these		
         try:
-             twitter.update_status(status=message)
+             api.update_status(status=message)
              print("Tweeted: %s" % message)
-        except TwythonError as e:
+        except api.error as e:
              print ("We encountered an error: %s" % e)	 
 		
 
