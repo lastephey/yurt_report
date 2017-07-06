@@ -22,7 +22,7 @@ plot_history=0
 
 #number of tweets to analyze
 #288 tweets per day at one tweet every 5 min
-ndays=10
+ndays=1
 tweets_per_day=288
 ntweets=ndays*tweets_per_day
 
@@ -103,20 +103,22 @@ for i in range((end-start).days+1):
 
 numweek = date2num(week)
 
-b=plt.figure(2)
-plt.hist(cat_present_dt, bins = numweek, ec="k")
-plt.gcf().autofmt_xdate()
-plt.title("Cat present tweets per day")
-plt.ylabel("Number of cat present tweets")
-plt.xlabel("Date")
-b.savefig('yurt_tweets_per_day.png')
+# b=plt.figure(2)
+# plt.hist(cat_present_dt, bins = numweek, ec="k")
+# plt.gcf().autofmt_xdate()
+# plt.title("Cat present tweets per day")
+# plt.ylabel("Number of cat present tweets")
+# plt.xlabel("Date")
+# b.savefig('yurt_tweets_per_day.png')
 
 #now plot histogram of which times are most popular
 c=plt.figure(3)
-plt.hist(cat_present_hour,bins=24)
+ax1=plt.subplot()
+plt.hist(cat_present_hour,bins=24,width=1)
 plt.xlabel("Time (hour)")
 plt.ylabel("Number of cat present tweets")
 plt.title("Popular times to be in yurt")
+ax1.set_xlim([0,24])
 c.savefig('popular_yurt_times.png')
 
 
