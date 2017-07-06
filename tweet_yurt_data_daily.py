@@ -16,6 +16,11 @@ from yurt_download import download_yurt_tweets
 from twython import Twython
 import os
 
+#change matplotlib backend
+matplotlib.use('Agg')
+#and tell matplotlib not to print to screen
+ioff()
+
 #load twitter data
 from auth import (
         consumer_key,
@@ -26,7 +31,7 @@ from auth import (
 
 #keep checking to see what time it is every 60 s
 #at some time every day, generate the last 24 hour report
-report_time='22:53:00';
+report_time='22:57:00';
 FMT='%H:%M:%S'
 print(flush=True)
 while True:
