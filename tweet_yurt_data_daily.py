@@ -107,7 +107,7 @@ while True:
         plt.hist(cat_present_hour,bins=24,width=1)
         plt.xlabel("Time (hour)")
         plt.ylabel("Number of cat present tweets")
-        plt.title("Popular times to be in yurt")
+        plt.title("Past 24 hours yurt occupancy")
         ax1.set_xlim([0,24])
         c.savefig('popular_yurt_times.png')
         
