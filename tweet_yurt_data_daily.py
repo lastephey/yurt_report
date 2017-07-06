@@ -6,6 +6,10 @@
 
 import json
 import matplotlib
+
+#change matplotlib backend, must be called before pyplot etc loaded
+matplotlib.use('Agg')
+
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import hist
 from matplotlib.dates import DayLocator, HourLocator, DateFormatter, drange, date2num, num2date
@@ -17,9 +21,7 @@ from yurt_download import download_yurt_tweets
 from twython import Twython
 import os
 
-#change matplotlib backend
-matplotlib.use('Agg')
-#and tell matplotlib not to print to screen
+#tell matplotlib not to print to screen
 plt.ioff()
 
 #load twitter data
