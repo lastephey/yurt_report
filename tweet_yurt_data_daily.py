@@ -20,7 +20,7 @@ import os
 #change matplotlib backend
 matplotlib.use('Agg')
 #and tell matplotlib not to print to screen
-ioff()
+matplotlib.ioff()
 
 #load twitter data
 from auth import (
@@ -32,7 +32,7 @@ from auth import (
 
 #keep checking to see what time it is every 60 s
 #at some time every day, generate the last 24 hour report
-report_time='22:58:00';
+report_time='22:59:00';
 FMT='%H:%M:%S'
 print(flush=True)
 while True:
