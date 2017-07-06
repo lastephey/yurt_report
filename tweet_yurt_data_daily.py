@@ -25,8 +25,8 @@ from auth import (
 )
 
 #keep checking to see what time it is every 60 s
-#at 7:15PM every day, generate the last 24 hour report
-report_time='19:15:00';
+#at some time every day, generate the last 24 hour report
+report_time='22:00:00';
 FMT='%H:%M:%S'
 print(flush=True)
 while True:
