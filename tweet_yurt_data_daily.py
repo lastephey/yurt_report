@@ -102,12 +102,14 @@ while True:
             cat_present_hour.append(int(text_temp[29:31]))
            
         #now plot histogram of which times are most popular
-        c=plt.figure(1)
-        plt.hist(cat_present_hour,bins=24)
+        c=plt.figure(3)
+        ax1=plt.subplot()
+        plt.hist(cat_present_hour,bins=24,width=1)
         plt.xlabel("Time (hour)")
         plt.ylabel("Number of cat present tweets")
-        plt.title("Past 24 hours yurt occupancy")
-        c.savefig('popular_yurt_times_daily.png')
+        plt.title("Popular times to be in yurt")
+        ax1.set_xlim([0,24])
+        c.savefig('popular_yurt_times.png')
         
         #okay, now that we've generated the data, post it to twitter!
         twitter = Twython(
