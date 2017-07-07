@@ -8,10 +8,9 @@ using a raspberry pi and a force sensor to decide when a cat goes inside
 
 mining the twitter data, processing it, and tweeting the yurt report daily!
 
-project based on https://acaird.github.io/computers/2015/01/07/raspberry-pi-fsr
+force sensor construction based on https://acaird.github.io/computers/2015/01/07/raspberry-pi-fsr
 
-using tweepy and Twython libraries which aren't copied here, but you can find them at:
+using tweepy library which isn't copied here, but you can find it at:
 
 https://github.com/tweepy/tweepy
 
-https://github.com/ryanmcgrath/twython
