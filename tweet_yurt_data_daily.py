@@ -128,6 +128,9 @@ while True:
         # Update status with our new image and status
         twitter.update_status_with_media(status=message, media=tweetpic)
         print("Tweeted: %s" % message)
+        
+        #add a pause so we don't double post (like this morning!)
+        time.sleep(60)
 
         
         
