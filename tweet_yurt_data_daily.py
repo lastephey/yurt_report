@@ -100,16 +100,18 @@ while True:
             cat_present_dt.append((datetime.datetime.strptime(text_temp[18:44], "%Y-%m-%d %H:%M:%S.%f")))    
             #also keep track of which hours cats are present, this is equally ugly
             cat_present_hour.append(int(text_temp[29:31]))
-           
+               
+
         #now plot histogram of which times are most popular
-        c=plt.figure(3)
-        ax1=plt.subplot()
-        plt.hist(cat_present_hour,bins=24,width=1)
-        plt.xlabel("Time (hour)")
-        plt.ylabel("Number of cat present tweets")
-        plt.title("Past 24 hours yurt occupancy")
-        ax1.set_xlim([0,24])
-        c.savefig('popular_yurt_times.png')
+        if len(cat_present_hour) >= 1:
+            c=plt.figure(3)
+            ax1=plt.subplot()
+            plt.hist(cat_present_hour,bins=24,width=1)
+            plt.xlabel("Time (hour)")
+            plt.ylabel("Number of cat present tweets")
+            plt.title("Past 24 hours yurt occupancy")
+            ax1.set_xlim([0,24])
+            c.savefig('popular_yurt_times.png')
         
         #okay, now that we've generated the data, post it to twitter!
         twitter = Twython(
@@ -124,9 +126,15 @@ while True:
 
         #and upload
         message=("Here is today's Yurt Report! %s" % now)
-        tweetpic = open("popular_yurt_times.png","rb")
-        # Update status with our new image and status
-        twitter.update_status_with_media(status=message, media=tweetpic)
+        if len(cat_present_hour) == 0:
+            tweetpic = open("sad_no_cats.png","rb")
+            twitter.update_status_with_media(status=message, media=tweetpic)    
+        
+        if len(cat_present_hour) >=1:
+            tweetpic = open("popular_yurt_times.png","rb")
+            # Update status with our new image and status
+            twitter.update_status_with_media(status=message, media=tweetpic)
+                
         print("Tweeted: %s" % message)
         
         #add a pause so we don't double post (like this morning!)
