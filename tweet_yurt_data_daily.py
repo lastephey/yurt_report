@@ -40,7 +40,7 @@ api = tweepy.API(auth)
 
 #keep checking to see what time it is every 60 s
 #at some time every day, generate the last 24 hour report
-report_time='15:45:00';
+report_time='15:48:00';
 FMT='%H:%M:%S'
 print(flush=True)
 while True:
@@ -127,12 +127,12 @@ while True:
         message=("Here is today's Yurt Report! %s" % now)
         if len(cat_present_hour) == 0:
             tweetpic = open("sad_no_cats.png","rb")
-            api.update_status_with_media(status=message, media=tweetpic)    
+            api.update_status(status=message, media=tweetpic)    
         
         if len(cat_present_hour) >=1:
             tweetpic = open("popular_yurt_times.png","rb")
             # Update status with our new image and status
-            api.update_status_with_media(status=message, media=tweetpic)
+            api.update_status(status=message, media=tweetpic)
                 
         print("Tweeted: %s" % message)
         
