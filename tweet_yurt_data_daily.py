@@ -18,7 +18,8 @@ from numpy import arange
 import time
 import datetime
 from yurt_download import download_yurt_tweets
-from twython import Twython
+import tweepy
+from tweepy import OAuthHandler
 import os
 
 #tell matplotlib not to print to screen
@@ -32,9 +33,14 @@ from auth import (
         access_token_secret
 )
 
+auth = OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+ 
+api = tweepy.API(auth)
+
 #keep checking to see what time it is every 60 s
 #at some time every day, generate the last 24 hour report
-report_time='15:40:00';
+report_time='15:45:00';
 FMT='%H:%M:%S'
 print(flush=True)
 while True:
@@ -113,13 +119,6 @@ while True:
             ax1.set_xlim([0,24])
             c.savefig('popular_yurt_times.png')
         
-        #okay, now that we've generated the data, post it to twitter!
-        twitter = Twython(
-        consumer_key,
-        consumer_secret,
-        access_token,
-        access_token_secret
-        )
         
         # get system time for timestamp on tweet to avoid duplicates
         now=datetime.datetime.now()
@@ -128,12 +127,12 @@ while True:
         message=("Here is today's Yurt Report! %s" % now)
         if len(cat_present_hour) == 0:
             tweetpic = open("sad_no_cats.png","rb")
-            twitter.update_status_with_media(status=message, media=tweetpic)    
+            api.update_status_with_media(status=message, media=tweetpic)    
         
         if len(cat_present_hour) >=1:
             tweetpic = open("popular_yurt_times.png","rb")
             # Update status with our new image and status
-            twitter.update_status_with_media(status=message, media=tweetpic)
+            api.update_status_with_media(status=message, media=tweetpic)
                 
         print("Tweeted: %s" % message)
         
