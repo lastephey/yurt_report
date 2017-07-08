@@ -40,7 +40,7 @@ api = tweepy.API(auth)
 
 #keep checking to see what time it is every 60 s
 #at some time every day, generate the last 24 hour report
-report_time='16:12:00';
+report_time='16:15:00';
 FMT='%H:%M:%S'
 print(flush=True)
 while True:
@@ -126,13 +126,13 @@ while True:
         #and upload
         message=("Here is today's Yurt Report! %s" % now)
         if len(cat_present_hour) == 0:
-            fn = os.path.abspath('/pi/Documents/yurt_report/sad_no_cats.png')
+            fn = os.path.abspath('home/pi/Documents/yurt_report/sad_no_cats.png')
             api.update_with_media(fn,status=message)    
         
         if len(cat_present_hour) >=1:
-            fn = os.path.abspath('/pi/Documents/yurt_report/popular_yurt_times_daily.png')
+            fn = os.path.abspath('home/pi/Documents/yurt_report/popular_yurt_times_daily.png')
             api.update_with_media(fn,status=message)
-                
+
         print("Tweeted: %s" % message)
         
         #add a pause so we don't double post
