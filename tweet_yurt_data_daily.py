@@ -126,7 +126,7 @@ while True:
         #and upload
         message=("Here is today's Yurt Report! %s" % now)
         if len(cat_present_hour) == 0:
-            fn = os.path.abspath('/home/pi/Documents/yurt_report/sad_no_cats.png')
+            fn = os.path.abspath('/home/pi/Documents/yurt_report/sad_no_cats.jpg')
             api.update_with_media(fn,status=message)    
         
         if len(cat_present_hour) >=1:
