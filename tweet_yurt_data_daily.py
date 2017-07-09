@@ -40,7 +40,7 @@ api = tweepy.API(auth)
 
 #keep checking to see what time it is every 60 s
 #at some time every day, generate the last 24 hour report
-report_time='16:26:00';
+report_time='17:35:00';
 FMT='%H:%M:%S'
 print(flush=True)
 while True:
@@ -117,7 +117,7 @@ while True:
             plt.ylabel("Number of cat present tweets")
             plt.title("Past 24 hours yurt occupancy")
             ax1.set_xlim([0,24])
-            c.savefig('popular_yurt_times.png')
+            c.savefig('popular_yurt_times_daily.png')
         
         
         # get system time for timestamp on tweet to avoid duplicates
