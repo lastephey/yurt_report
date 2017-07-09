@@ -68,7 +68,7 @@ savestring='saved_tweets_%s.json' %today_ns
 print(savestring)
 
 #write tweet objects to file
-with open(savestring, 'w') as outfile:
+with open(savestring, 'w', encoding="utf-8") as outfile:
     for line in alltweets_json:
         outfile.write("%s\n" % line)
 
