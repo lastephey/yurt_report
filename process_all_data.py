@@ -14,6 +14,8 @@ from numpy import arange
 import time
 import datetime
 import os
+import pandas
+from collections import Counter
 
 
 #find all saved tweets in current directory
@@ -75,6 +77,7 @@ cat_present_dt=[]
 cat_present_list=[]
 cat_present_hour=[]
 cat_present_day=[]
+cat_present_day_str=[]
 for i in range(0,len(cat_present)):
     j=cat_present[i]
     text_temp=text_data_unique[j]     
@@ -85,8 +88,9 @@ for i in range(0,len(cat_present)):
     #also keep track of which hours cats are present, this is equally ugly
     cat_present_hour.append(int(text_temp[29:31]))
     cat_present_day.append((datetime.datetime.strptime(text_temp[18:28], "%Y-%m-%d")))
+    cat_present_day_str.append(text_temp[18:28])
 
-#print(cat_present_dt)    
+#print(cat_present_day_str)    
     
 #try plotting number of tweets vs cat occupancy
 a=plt.figure(1)
@@ -96,14 +100,19 @@ plt.ylabel('Yurt occupancy')
 plt.title('Historical yurt occupancy')
 #plt.savefig("test.png")    
 
-#try plotting date vs cat occupancy
+
+#try plotting number of tweets per day
+date_counts = Counter(cat_present_day_str)
+test=sorted(date_counts.items())
+print(test)
+labels, values=zip(*test)
 b=plt.figure(2)
-plt.hist(cat_present_dt)
-plt.xlabel('Date')
-plt.ylabel('Number of cat present tweets')
-plt.title('Historical yurt occupancy')
-#plt.savefig("test.png")    
-       
+indexes = np.arange(len(labels))
+width = 1
+plt.bar(indexes, values, width)
+plt.xticks(indexes + width * 0.5, labels)
+
+
 #now plot histogram of which times are most popular
 c=plt.figure(3)
 ax1=plt.subplot()
