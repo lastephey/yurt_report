@@ -125,7 +125,7 @@ while True:
         
         # get system time for timestamp on tweet to avoid duplicates
         now=datetime.datetime.now()
-pi
+
         #and upload
         message=("Here is today's Yurt Report! %s" % now)
         if len(cat_present_hour) == 0:
