@@ -115,12 +115,12 @@ while True:
         if len(cat_present_hour) >= 1:
             c=plt.figure(3)
             ax1=plt.subplot()
-            plt.hist(cat_present_hour,bins=24,width=1)
+            plt.hist(cat_present_hour,bins=range(24),rwidth=1,align='left',edgecolor='black', linewidth=1.2)
             plt.xlabel("Time (hour)")
             plt.ylabel("Number of cat present tweets")
             plt.title("Past 24 hours yurt occupancy")
-            ax1.set_xlim([0,24])
-            c.savefig('popular_yurt_times_daily.png')
+            ax1.set_xlim([-1,24])
+            c.savefig('popular_yurt_times_test.png')
         
         
         # get system time for timestamp on tweet to avoid duplicates
