@@ -115,7 +115,7 @@ while True:
         if len(cat_present_hour) >= 1:
             c=plt.figure(3)
             ax1=plt.subplot()
-            plt.hist(cat_present_hour,bins=range(24),rwidth=1,align='left',edgecolor='black', linewidth=1.2)
+            plt.hist(cat_present_hour,bins=range(25),rwidth=1,align='left',edgecolor='black', linewidth=1.2)
             plt.xlabel("Time (hour)")
             plt.ylabel("Number of cat present tweets")
             plt.title("Past 24 hours yurt occupancy")
