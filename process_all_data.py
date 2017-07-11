@@ -116,12 +116,12 @@ plt.xticks(indexes + width * 0.5, labels)
 #now plot histogram of which times are most popular
 c=plt.figure(3)
 ax1=plt.subplot()
-plt.hist(cat_present_hour,bins=24,width=1)
+plt.hist(cat_present_hour,bins=range(25),rwidth=1,align='left',edgecolor='black', linewidth=1.2)
 plt.xlabel("Time (hour)")
 plt.ylabel("Number of cat present tweets")
-plt.title("Popular times to be in yurt")
-ax1.set_xlim([0,24])
-#c.savefig('popular_yurt_times.png')
+plt.title("Most popular yurt times")
+ax1.set_xlim([-1,24])
+c.savefig('popular_yurt_times_all.png')
 plt.show()
     
 #try finding average duration of stay
