@@ -40,7 +40,7 @@ api = tweepy.API(auth)
 
 #keep checking to see what time it is every 60 s
 #at some time every day, generate the last 24 hour report
-report_time='17:35:00';
+report_time='19:45:00';
 FMT='%H:%M:%S'
 print(flush=True)
 while True:
@@ -107,6 +107,9 @@ while True:
             #also keep track of which hours cats are present, this is equally ugly
             cat_present_hour.append(int(text_temp[29:31]))
                
+        #something weird happened where it looks like it plotted on top of yesterday's plot
+        #so delete previous file so there's no chance we can write on top of it
+        os.remove('popular_yurt_times_daily.png')
 
         #now plot histogram of which times are most popular
         if len(cat_present_hour) >= 1:
