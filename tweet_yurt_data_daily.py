@@ -109,7 +109,9 @@ while True:
                
         #something weird happened where it looks like it plotted on top of yesterday's plot
         #so delete previous file so there's no chance we can write on top of it
-        os.remove('popular_yurt_times_daily.png')
+        #first have to check if the file exists
+        if os.path.isfile("popular_yurt_times_daily.png") == True:
+            os.remove('popular_yurt_times_daily.png')
 
         #now plot histogram of which times are most popular
         if len(cat_present_hour) >= 1:
