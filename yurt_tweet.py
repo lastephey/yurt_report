@@ -80,9 +80,9 @@ while True:
         try:
              api.update_status(status=message)
              print("Tweeted: %s" % message)
-         except Exception, e:
-                print ("We encountered an error: %s" % e)	 
-                pass
+        except Exception, e:
+             print ("We encountered an error: %s" % e)	 
+             pass
   
 		
 
