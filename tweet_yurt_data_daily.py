@@ -123,6 +123,8 @@ while True:
             plt.title("Past 24 hours yurt occupancy")
             ax1.set_xlim([-1,24])
             c.savefig('popular_yurt_times_daily.png')
+            #clear fig so we can't plot on top of old data
+            plt.clf()
         
         
         # get system time for timestamp on tweet to avoid duplicates
