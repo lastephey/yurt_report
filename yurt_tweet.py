@@ -80,9 +80,16 @@ while True:
         try:
              api.update_status(status=message)
              print("Tweeted: %s" % message)
-        except Exception:
-             print ("We encountered an error: %s" % e)	 
-             pass
+        #try to improve our error handling     
+        except TwythonAuthError as e:
+             print("We encountered an auth error")
+             print e
+        except TwythonError as e:
+             print("We encountered a general error")
+             print e
+        except TwythonRateLimitError as e:
+             print("We encountered a rate limit error")
+             print e
   
 		
 
