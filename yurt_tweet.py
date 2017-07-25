@@ -83,13 +83,13 @@ while True:
         #try to improve our error handling     
         except TwythonAuthError as e:
              print("We encountered an auth error")
-             print e
+             print(e)
         except TwythonError as e:
              print("We encountered a general error")
-             print e
+             print(e)
         except TwythonRateLimitError as e:
              print("We encountered a rate limit error")
-             print e
+             print(e)
   
 		
 
