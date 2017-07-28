@@ -85,7 +85,7 @@ while True:
         except api.TweepError as e:
              print("We encountered a general error")
              print(e)
-        except api.RateLimitError: as e:
+        except api.RateLimitError as e:
              print("We encountered a rate limit error")
              print(e)
   
