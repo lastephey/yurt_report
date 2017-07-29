@@ -82,10 +82,10 @@ while True:
              print("Tweeted: %s" % message)
         #try to improve our error handling     
         #make sure we use tweepy, not twython!
-        except api.TweepError as e:
+        except tweepy.TweepError as e:
              print("We encountered a general error")
              print(e)
-        except api.RateLimitError as e:
+        except tweepy.RateLimitError as e:
              print("We encountered a rate limit error")
              print(e)
   
