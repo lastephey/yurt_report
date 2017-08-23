@@ -64,7 +64,7 @@ while True:
 		#with basket, now reads about 35 percent empty
 		#should read over 40 percent with cat
         #force sensor baseline creeping up with time
-        force_threshold=40
+        force_threshold=50
 
         # get system time for timestamp on tweet to avoid duplicates
         now=datetime.datetime.now()
