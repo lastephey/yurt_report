@@ -130,16 +130,27 @@ while True:
         # get system time for timestamp on tweet to avoid duplicates
         now=datetime.datetime.now()
 
-        #and upload
-        message=("Here is today's Yurt Report! %s" % now)
-        if len(cat_present_hour) == 0:
-            fn = os.path.abspath('/home/pi/Documents/yurt_report/sad_no_cats.jpg')
-            api.update_with_media(fn,status=message)    
+        #and now upload
+        #make robust to errors, same as in yurt_tweet
         
-        if len(cat_present_hour) >=1:
-            fn = os.path.abspath('/home/pi/Documents/yurt_report/popular_yurt_times_daily.png')
-            api.update_with_media(fn,status=message)
-
+        try:
+            message=("Here is today's Yurt Report! %s" % now)
+            if len(cat_present_hour) == 0:
+                fn = os.path.abspath('/home/pi/Documents/yurt_report/sad_no_cats.jpg')
+                api.update_with_media(fn,status=message)    
+        
+            if len(cat_present_hour) >=1:
+                fn = os.path.abspath('/home/pi/Documents/yurt_report/popular_yurt_times_daily.png')
+                api.update_with_media(fn,status=message)
+                
+        except tweepy.TweepError as e:
+            print("We encountered a general error")
+            print(e)
+               
+        except tweepy.RateLimitError as e:
+            print("We encountered a rate limit error")
+            print(e)
+                
         print("Tweeted: %s" % message)
         
         #add a pause so we don't double post
